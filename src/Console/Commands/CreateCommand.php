@@ -66,13 +66,13 @@ class CreateCommand extends Command
     public function fire()
     {
         $variables = $this->getStubVariables();
-        Log::debug($variables);
+        // Log::debug($variables);
         $this->info(__('moduler::command.create.creating', ['package' => $variables['PACKAGE']]));
 
         // Create directory
         $path = $this->makeDirectory($variables['LOCATION']);
         $location = implode('/', $path);
-        $this->info(__('moduler::command.create.making_dir'));
+        $modulePath = $location;
 
         $bar = $this->output->createProgressBar(6);
         $bar->start();
@@ -93,18 +93,21 @@ class CreateCommand extends Command
         $this->writeContent($location . '/README.md', $content);
         $bar->advance();
 
+        $this->makeDirectory($location . '/tests', true);
+        $this->writeContent($location . '/tests/.gitkeep', '');
+
+        $location = implode('/', $this->makeDirectory($location . '/src', true));
+
         // Service provider
         $content = $this->getStubContents($stubPath . 'serviceprovider.stub', $variables);
-        $this->writeContent($location . '/' . $variables['PROJECTNAME'] . 'ServiceProvide.php', $content);
+        $this->writeContent($location . '/' . $variables['PROJECTNAME'] . 'ServiceProvider.php', $content);
         $bar->advance();
 
         // Facade Helper
         $content = $this->getStubContents($stubPath . 'module.stub', $variables);
         $this->writeContent($location . '/' . $variables['PROJECTNAME'] . '.php', $content);
         $bar->advance();
-
-        $location = implode('/', $this->makeDirectory($location . '/src', true));
-
+        
         // Config
         $this->makeDirectory($location . '/config', true);
         $content = $this->getStubContents($stubPath . 'config/config.stub', $variables);
@@ -159,8 +162,36 @@ class CreateCommand extends Command
         $this->writeContent($location . '/Http/Requests/' . $variables['PROJECTNAME'] . 'Req.php', $content);
         $bar->advance();
 
+        // Locale
+        $this->makeDirectory($location . '/resources/lang/en', true);
+        $content = $this->getStubContents($stubPath . 'resources/lang/en/module.stub', $variables);
+        $this->writeContent($location . '/resources/lang/en/module.php', $content);
+        $bar->advance();
+
+        // Locale
+        $this->makeDirectory($location . '/resources/views', true);
+        $content = $this->getStubContents($stubPath . 'resources/views/demo.blade.stub', $variables);
+        $this->writeContent($location . '/resources/views/demo.blade.php', $content);
+        $bar->advance();
+
+        // Register
+        $rootComposer = json_decode($this->fs->read('composer.json'), true);
+        // Log::debug($rootComposer);
+        // Check if module already installed.
         $bar->finish();
         $this->newLine();
+        if (isset($rootComposer['require'][$variables['PACKAGE']])) {
+            $this->info(__('moduler::command.create.installed', ['package' => $variables['PACKAGE']]));
+        } else {
+            if (!isset($rootComposer['repositories'][$variables['PACKAGE']])) {
+                $rootComposer['repositories'][$variables['PACKAGE']] = [
+                    'type' => 'path',
+                    'url' => $modulePath
+                ];
+                $this->fs->put('composer.json', str_replace('\/', '/', json_encode($rootComposer, JSON_PRETTY_PRINT)));
+            }
+            $this->info(__('moduler::command.create.install', ['package' => $variables['PACKAGE']]));
+        }
     }
 
     /**
@@ -214,12 +245,12 @@ class CreateCommand extends Command
         }
         return [
             'LOCATION' => implode('/', $lowercases),
-            'NAMESPACE' => config('moduler.namespace') . '\\' . implode('\\', $namespace),
-            'NAMESPACEDOUBLESLASH' => config('moduler.namespace') . '\\\\' . implode('\\\\', $namespace),
-            'CLASSNAME' => '',
-            'PACKAGE' => $name,
+            'NAMESPACE' => config('moduler.namespace') . '\\' . implode('', $namespace),
+            'NAMESPACEDOUBLESLASH' => config('moduler.namespace') . '\\\\' . implode('', $namespace),
+            'PACKAGE' => strtolower(config('moduler.namespace')) . '/' . implode('', $lowercases),
+            'GROUP' => implode('', $lowercases),
             'FASCADE_ALIAS' => implode('', $namespace),
-            'PROJECTNAME' => Str::ucfirst($split[count($split) - 1]), // The last name of package module/child/<grandchild>
+            'PROJECTNAME' => Str::ucfirst($split[count($split) - 1]),
             'PROJECTGROUP' => $name,
             'AUTHOR' => $this->option('author', ''),
             'EMAIL' => $this->option('email', ''),
