@@ -1,0 +1,25 @@
+<?php
+
+namespace {{@NAMESPACE@}}\Facades;
+
+use Illuminate\Support\Facades\Facade;
+use {{@NAMESPACE@}}\{{@PROJECTNAME@}} as MainApplication;
+
+/**
+ * The {{@PROJECTNAME@}} facade.
+ *
+ * @package {{@PACKAGE@}}
+ * @author  {{@AUTHOR@}} <{{@EMAIL@}}>
+ */
+class {{@PROJECTNAME@}} extends Facade
+{
+    /**
+     * Get the registered name of the component.
+     *
+     * @return string
+     */
+    protected static function getFacadeAccessor()
+    {
+        return MainApplication::class;
+    }
+}

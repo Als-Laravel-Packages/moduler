@@ -1,0 +1,37 @@
+{
+    "name": "aldev/moduler",
+    "description": "Creating moduler, seems like DDD",
+    "keywords": ["example", "key", "words"],
+    "license": "MIT",
+    "homepage": "https://moduler.com",
+    "version": "0.0.1",
+    "authors": [
+        {
+            "name": "Al Lestaire Acasio",
+            "email": "allestaire.acasio@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5|^8.0",
+        "illuminate/support": "^7.0|^8.0|^9.0"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "Aldev\\Moduler\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "aliases": {
+                "Moduler": "Aldev\\Moduler\\Facades\\Moduler"
+            },
+            "providers": [
+                "Aldev\\Moduler\\ModulerServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
+}

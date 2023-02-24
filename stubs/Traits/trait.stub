@@ -1,0 +1,14 @@
+<?php
+
+namespace {{@NAMESPACE@}}\Traits;
+
+/**
+ * The {{@PROJECTNAME@}}Trait class.
+ *
+ * @package {{@PACKAGE@}}
+ * @author  {{@AUTHOR@}} <{{@EMAIL@}}>
+ */
+trait {{@PROJECTNAME@}}Trait
+{
+    //
+}

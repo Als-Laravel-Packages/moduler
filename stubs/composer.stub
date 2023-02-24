@@ -1,0 +1,34 @@
+{
+    "name": "{{@PACKAGE@}}",
+    "description": "{{@DESCRIPTION@}}",
+    "keywords": ["example", "key", "words"],
+    "license": "MIT",
+    "homepage": "https://module.com",
+    "version": "0.0.1",
+    "authors": [
+        {
+            "name": "{{@AUTHOR@}}",
+            "email": "{{@EMAIL@}}"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5|^8.0",
+        "illuminate/support": "^7.0|^8.0|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "{{@NAMESPACEDOUBLESLASH@}}\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "aliases": {
+                "{{@FASCADE_ALIAS@}}": "{{@NAMESPACEDOUBLESLASH@}}\\Facades\\{{@PROJECTNAME@}}"
+            },
+            "providers": [
+                "{{@NAMESPACEDOUBLESLASH@}}\\{{@PROJECTNAME@}}ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
+}

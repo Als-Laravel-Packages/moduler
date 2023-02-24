@@ -1,0 +1,16 @@
+<?php
+
+namespace {{@NAMESPACE@}}\Exceptions;
+
+use Exception;
+
+/**
+ * The {{@PROJECTNAME@}}Exception class.
+ *
+ * @package {{@PACKAGE@}}
+ * @author  {{@AUTHOR@}} <{{@EMAIL@}}>
+ */
+class {{@PROJECTNAME@}}Exception extends Exception
+{
+    //
+}

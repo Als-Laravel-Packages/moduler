@@ -1,0 +1,26 @@
+<?php
+
+namespace {{@NAMESPACE@}}\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use {{@NAMESPACE@}}\Facades\{{@PROJECTNAME@}};
+use {{@NAMESPACE@}}\Http\Requests\{{@PROJECTNAME@}}Req;
+
+/**
+ * The {{@PROJECTNAME@}}Controller class.
+ *
+ * @package {{@PACKAGE@}}
+ * @author  {{@AUTHOR@}} <{{@EMAIL@}}>
+ */
+class {{@PROJECTNAME@}}Controller extends Controller
+{
+    /**
+     * [index description]
+     * @return [type] [description]
+     */
+    public function index({{@PROJECTNAME@}}Req $request)
+    {
+        // Code here
+    }
+}

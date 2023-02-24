@@ -1,0 +1,147 @@
+<?php
+
+namespace {{@NAMESPACE@}};
+
+use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\ServiceProvider;
+// use {{@NAMESPACE@}}\Console\Commands\{{@PROJECTNAME@}}Command;
+
+/**
+ * The {{@PROJECTNAME@}}ServiceProvider class.
+ *
+ * @package {{@PACKAGE@}}
+ * @author  {{@AUTHOR@}} <{{@EMAIL@}}>
+ */
+class {{@PROJECTNAME@}}ServiceProvider extends ServiceProvider
+{
+    /**
+     * Register application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        // Load package's config
+        $this->mergeConfigFrom($this->getPackageConfigPath(), '{{@PROJECTGROUP@}}');
+
+        // Register package's main service
+        $this->app->singleton({{@PROJECTNAME@}}::class, function ($app) {
+            return new {{@PROJECTNAME@}}();
+        });
+
+        // Register package's command services
+        // $this->app->singleton({{@PROJECTNAME@}}Command::class, function ($app) {
+        //     return new {{@PROJECTNAME@}}Command();
+        // });
+    }
+
+    /**
+     * Bootstrap application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        // Bootstrap handle
+        $this->bootConfig();
+        // $this->bootCommands();
+        $this->bootRoutes();
+        $this->bootTranslations();
+        $this->bootViews();
+        $this->bootMigrations();
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * This method is only really useful when this provider implements
+     * the `DeferrableProvider` contract above.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [
+            {{@PROJECTNAME@}}::class,
+            // {{@PROJECTNAME@}}Command::class,
+        ];
+    }
+
+    /**
+     * Get package's default config file path
+     *
+     * @return string
+     */
+    protected function getPackageConfigPath()
+    {
+        return __DIR__ . '/config/config.php';
+    }
+
+    /**
+     * Publishing package's config
+     *
+     * @return void
+     */
+    protected function bootConfig()
+    {
+        $this->publishes([
+            $this->getPackageConfigPath() => config_path('{{@PROJECTGROUP@}}.php')
+        ], 'config');
+    }
+
+    /**
+     * Handle package's commands
+     *
+     * @return void
+     */
+    // protected function bootCommands()
+    // {
+    //     if ($this->app->runningInConsole()) {
+    //         $this->commands([
+    //             {{@PROJECTNAME@}}Command::class
+    //         ]);
+    //     }
+    // }
+
+    /**
+     * Loading package's routes
+     *
+     * @return void
+     */
+    protected function bootRoutes()
+    {
+        $packageRoutes = __DIR__ . '/routes/routes.php';
+
+        $this->loadRoutesFrom($packageRoutes);
+    }
+
+    /**
+     * Loading and publishing package's translations
+     *
+     * @return void
+     */
+    protected function bootTranslations()
+    {
+        $packageTranslationsPath = __DIR__ . '/resources/lang';
+
+        $this->loadTranslationsFrom($packageTranslationsPath, '{{@PROJECTGROUP@}}');
+        $this->publishes([
+            $packageTranslationsPath => resource_path('lang/vendor/{{@PROJECTGROUP@}}'),
+        ], 'lang');
+    }
+
+    /**
+     * Loading and publishing package's views
+     *
+     * @return void
+     */
+    protected function bootViews()
+    {
+        $packageViewsPath = __DIR__ . '/resources/views';
+
+        $this->loadViewsFrom($packageViewsPath, '{{@PROJECTGROUP@}}');
+        $this->publishes([
+            $packageViewsPath => resource_path('views/vendor/{{@PROJECTGROUP@}}'),
+        ], 'views');
+    }
+}

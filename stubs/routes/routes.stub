@@ -1,0 +1,9 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use {{@NAMESPACE@}}\Http\Controllers\{{@PROJECTNAME@}}Controller;
+use {{@NAMESPACE@}}\Http\Middleware\{{@PROJECTNAME@}}Middleware;
+
+Route::group(['prefix' => 'api/{{@PACKAGE@}}', 'middleware' => [{{@PROJECTNAME@}}Middleware::class]], function() {
+    // Route::get('', {{@PROJECTNAME@}}Controller::class . '@index');
+});

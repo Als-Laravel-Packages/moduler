@@ -1,0 +1,6 @@
+# {{@PACKAGE@}}
+
+
+### Installation
+
+`composer require {{@PACKAGE@}}`
