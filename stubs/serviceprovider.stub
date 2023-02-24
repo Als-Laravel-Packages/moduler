@@ -22,7 +22,7 @@ class {{@PROJECTNAME@}}ServiceProvider extends ServiceProvider
     public function register()
     {
         // Load package's config
-        $this->mergeConfigFrom($this->getPackageConfigPath(), '{{@PROJECTGROUP@}}');
+        $this->mergeConfigFrom($this->getPackageConfigPath(), '{{@GROUP@}}');
 
         // Register package's main service
         $this->app->singleton({{@PROJECTNAME@}}::class, function ($app) {
@@ -48,7 +48,6 @@ class {{@PROJECTNAME@}}ServiceProvider extends ServiceProvider
         $this->bootRoutes();
         $this->bootTranslations();
         $this->bootViews();
-        $this->bootMigrations();
     }
 
     /**
@@ -85,7 +84,7 @@ class {{@PROJECTNAME@}}ServiceProvider extends ServiceProvider
     protected function bootConfig()
     {
         $this->publishes([
-            $this->getPackageConfigPath() => config_path('{{@PROJECTGROUP@}}.php')
+            $this->getPackageConfigPath() => config_path('{{@GROUP@}}.php')
         ], 'config');
     }
 
@@ -124,9 +123,9 @@ class {{@PROJECTNAME@}}ServiceProvider extends ServiceProvider
     {
         $packageTranslationsPath = __DIR__ . '/resources/lang';
 
-        $this->loadTranslationsFrom($packageTranslationsPath, '{{@PROJECTGROUP@}}');
+        $this->loadTranslationsFrom($packageTranslationsPath, '{{@GROUP@}}');
         $this->publishes([
-            $packageTranslationsPath => resource_path('lang/vendor/{{@PROJECTGROUP@}}'),
+            $packageTranslationsPath => resource_path('lang/vendor/module/{{@GROUP@}}'),
         ], 'lang');
     }
 
@@ -139,9 +138,9 @@ class {{@PROJECTNAME@}}ServiceProvider extends ServiceProvider
     {
         $packageViewsPath = __DIR__ . '/resources/views';
 
-        $this->loadViewsFrom($packageViewsPath, '{{@PROJECTGROUP@}}');
+        $this->loadViewsFrom($packageViewsPath, '{{@GROUP@}}');
         $this->publishes([
-            $packageViewsPath => resource_path('views/vendor/{{@PROJECTGROUP@}}'),
+            $packageViewsPath => resource_path('views/vendor/module/{{@GROUP@}}'),
         ], 'views');
     }
 }
