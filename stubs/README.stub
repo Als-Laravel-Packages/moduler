@@ -4,3 +4,15 @@
 ### Installation
 
 `composer require {{@PACKAGE@}}`
+
+
+### Uninstall
+
+`composer remove {{@PACKAGE@}}`
+
+
+**Usage** | **Description**
+----------|----------------
+config('{{@GROUP@}}.key') | Accessing config value.
+view('{{@GROUP@}}::demo') | Accessing view.
+__('{{@GROUP@}}::module.author') | Accessing language.
