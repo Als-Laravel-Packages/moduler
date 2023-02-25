@@ -15,9 +15,9 @@ composer require aldev/modeler
 **Command** | **Parameters** | **Description**
 ------------|----------------|----------------
 `moduler:create` | name | Vendor/module/submodule. i.e `php artisan moduler:create parent/child/grandchild`.
-_ | -A|--author=John Doe | Author name.
-_ | -E|--email=johndoe@moduler.com | Author email address.
-_ | -D|--description= | Module description/
+_ | -A\|--author=John Doe | Author name.
+_ | -E\|--email=johndoe@moduler.com | Author email address.
+_ | -D\|--description= | Module description/
 `moduler:list` | _ | List modules.
 
 
