@@ -3,12 +3,16 @@
 
 ### Installation
 
-`composer require {{@PACKAGE@}}`
+```bash
+composer require {{@PACKAGE@}}
+```
 
 
 ### Uninstall
 
-`composer remove {{@PACKAGE@}}`
+```bash
+composer remove {{@PACKAGE@}}
+```
 
 
 **Usage** | **Description**
