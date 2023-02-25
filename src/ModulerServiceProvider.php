@@ -5,6 +5,7 @@ namespace Aldev\Moduler;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 use Aldev\Moduler\Console\Commands\CreateCommand;
+use Aldev\Moduler\Console\Commands\ListCommand;
 
 /**
  * The ModuleServiceProvider class.
@@ -32,6 +33,11 @@ class ModulerServiceProvider extends ServiceProvider
         // Register package's command services
         $this->app->singleton(CreateCommand::class, function ($app) {
             return new CreateCommand;
+        });
+
+        // Register package's command services
+        $this->app->singleton(ListCommand::class, function ($app) {
+            return new ListCommand;
         });
     }
 
@@ -63,6 +69,7 @@ class ModulerServiceProvider extends ServiceProvider
         return [
             Moduler::class,
             CreateCommand::class,
+            ListCommand::class
         ];
     }
 
@@ -97,7 +104,8 @@ class ModulerServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                CreateCommand::class
+                CreateCommand::class,
+                ListCommand::class
             ]);
         }
     }

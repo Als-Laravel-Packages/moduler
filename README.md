@@ -18,6 +18,7 @@ composer require aldev/modeler
 _ | -A|--author=John Doe | Author name.
 _ | -E|--email=johndoe@moduler.com | Author email address.
 _ | -D|--description= | Module description/
+`moduler:list` | _ | List modules.
 
 
 ### Requirements
