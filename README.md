@@ -2,9 +2,12 @@
 
 - Creating sub package.
 
+
 #### Installation
 
-`composer require aldev/modeler`
+```bash
+$ composer require aldev/modeler
+```
 
 
 ### Requirements
