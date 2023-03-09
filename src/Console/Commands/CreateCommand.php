@@ -174,6 +174,12 @@ class CreateCommand extends Command
         $this->writeContent($location . '/resources/views/demo.blade.php', $content);
         $bar->advance();
 
+        // Locale
+        $this->makeDirectory($location . '/resources/react', true);
+        $content = $this->getStubContents($stubPath . 'resources/react/App.stub', $variables);
+        $this->writeContent($location . '/resources/react/App.jsx', $content);
+        $bar->advance();
+
         // Register
         $rootComposer = json_decode($this->fs->read('composer.json'), true);
         // Log::debug($rootComposer);
@@ -192,6 +198,7 @@ class CreateCommand extends Command
             }
             $this->info(__('moduler::command.create.install', ['package' => $variables['PACKAGE']]));
         }
+        $this->info(__('moduler::command.final_message'));
     }
 
     /**
@@ -243,12 +250,18 @@ class CreateCommand extends Command
             array_push($lowercases, Str::lower($chunk));
             array_push($namespace, Str::ucfirst($chunk));
         }
+        $locationWithModules = implode('/modules/', $lowercases);
+        $locationWithModules = explode('/', $locationWithModules);
+        $locationWithModules = array_merge([config('moduler.root')], $locationWithModules, ['src', 'resources', 'react']);
+        $locationWithModules = '\'' . implode('\', \'', $locationWithModules) . '\'';
+
         return [
             'LOCATION' => implode('/', $lowercases),
             'NAMESPACE' => config('moduler.namespace') . '\\' . implode('', $namespace),
             'NAMESPACEDOUBLESLASH' => config('moduler.namespace') . '\\\\' . implode('', $namespace),
             'PACKAGE' => strtolower(config('moduler.namespace')) . '/' . implode('', $lowercases),
-            'GROUP' => implode('', $lowercases),
+            'GROUP' => implode('/', $lowercases),
+            'WEBPACK_LOCATION' => $locationWithModules,
             'FASCADE_ALIAS' => implode('', $namespace),
             'PROJECTNAME' => Str::ucfirst($split[count($split) - 1]),
             'PROJECTGROUP' => $name,

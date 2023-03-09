@@ -14,6 +14,18 @@ composer require {{@PACKAGE@}}
 composer remove {{@PACKAGE@}}
 ```
 
+### Webpack Config
+
+```js
+mix.webpackConfig({
+   resolve: {
+      alias: {
+         '{{@GROUP@}}': path.resolve(__dirname, {{@WEBPACK_LOCATION@}})
+      }
+   }
+})
+```
+
 
 **Usage** | **Description**
 ----------|----------------

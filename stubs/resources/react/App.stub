@@ -1,0 +1,18 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+
+const {{@FASCADE_ALIAS@}} = () => {
+
+  return (
+    <p>[{{@FASCADE_ALIAS@}}] module</p>
+  )
+}
+
+{{@FASCADE_ALIAS@}}.propTypes = {
+
+}
+{{@FASCADE_ALIAS@}}.defaultProps = {
+
+}
+
+export default {{@FASCADE_ALIAS@}}
