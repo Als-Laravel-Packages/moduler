@@ -32,3 +32,11 @@ _ | `-D\|--description=` | Module description/
 **React** | [any](https://reactjs.org/)
 
 
+### Change logs
+
+**Version** | **Description**
+------------|----------------
+**1.0.0** | This supports laravel 7 and below only, this will cause FlySystem error on higher version
+**1.1.0** | Can this use for Laravel 8 and up. Fixed issue regarding local adapter
+
+
