@@ -21,6 +21,13 @@ _ | `-D\|--description=` | Module description/
 `moduler:list` | _ | List modules.
 
 
+### Usage
+
+```bash
+php artisan moduler:create my/fatastic -A="John Doe" -E="johndoe@example.com" -D="My Fantastic module"
+```
+
+
 ### Requirements
 
 **Tech** | **Version**
