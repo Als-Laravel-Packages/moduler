@@ -10,7 +10,7 @@ use Illuminate\Support\Pluralizer;
 // use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use League\Flysystem\Filesystem;
-use League\Flysystem\Adapter\Local;
+use League\Flysystem\Local\LocalFilesystemAdapter as Local;
 use Log;
 
 /**
