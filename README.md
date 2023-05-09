@@ -6,7 +6,7 @@
 #### Installation
 
 ```bash
-composer require aldev/modeler
+composer require aldev/moduler
 ```
 
 
