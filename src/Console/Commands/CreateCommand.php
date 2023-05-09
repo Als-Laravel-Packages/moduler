@@ -194,7 +194,7 @@ class CreateCommand extends Command
                     'type' => 'path',
                     'url' => $modulePath
                 ];
-                $this->fs->put('composer.json', str_replace('\/', '/', json_encode($rootComposer, JSON_PRETTY_PRINT)));
+                $this->fs->write('composer.json', str_replace('\/', '/', json_encode($rootComposer, JSON_PRETTY_PRINT)));
             }
             $this->info(__('moduler::command.create.install', ['package' => $variables['PACKAGE']]));
         }
@@ -228,11 +228,7 @@ class CreateCommand extends Command
      */
     public function writeContent($path, $content)
     {
-        if ($this->fs->has($path)) {
-            $this->fs->update($path, $content);
-        } else {
-            $this->fs->write($path, $content);
-        }
+        $this->fs->write($path, $content);
     }
 
     /**
@@ -304,7 +300,7 @@ class CreateCommand extends Command
             array_push($dirs, $dir);
             $location = implode('/', $dirs);
             if (! $this->fs->has($location)) {
-                $this->fs->createDir($location);
+                $this->fs->createDirectory($location);
             }
             if ($index < (count($paths) - 1) && $skipModule === false) {
                 array_push($dirs, config('moduler.root'));
