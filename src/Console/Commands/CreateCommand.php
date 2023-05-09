@@ -28,9 +28,9 @@ class CreateCommand extends Command
      */
     protected $signature = 'moduler:create
                             {name : module name}
-                            {-A|--author=John Doe : Author name}
-                            {-E|--email=johndoe@moduler.com : Author email address.}
-                            {-D|--description= : Module description}';
+                            {--A|author=John Doe : Author name}
+                            {--E|email=johndoe@moduler.com : Author email address.}
+                            {--D|description= : Module description}';
 
     /**
      * The console command description.
