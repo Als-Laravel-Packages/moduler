@@ -9,6 +9,22 @@
 composer require aldev/moduler
 ```
 
+#### Manual Installation
+
+```bash
+# Create packages/aldev folder on your root project
+# Copy package to packages/aldev
+# Add below line to composer.json
+"repositories": {
+    "aldev/moduler": {
+        "type": "path",
+        "url": "packages/aldev/moduler"
+    }
+}
+# Then run installation command
+composer require aldev/moduler
+```
+
 
 ### Commands
 
@@ -43,7 +59,7 @@ php artisan moduler:create my/fatastic -A="John Doe" -E="johndoe@example.com" -D
 
 **Version** | **Description**
 ------------|----------------
-**1.0.0** | This supports laravel 7 and below only, this will cause FlySystem error on higher version
 **1.1.0** | Can this use for Laravel 8 and up. Fixed issue regarding local adapter
+**1.0.0** | This supports laravel 7 and below only, this will cause FlySystem error on higher version
 
 
