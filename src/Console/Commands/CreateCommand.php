@@ -251,6 +251,18 @@ class CreateCommand extends Command
         $locationWithModules = array_merge([config('moduler.root')], $locationWithModules, ['src', 'resources', 'react']);
         $locationWithModules = '\'' . implode('\', \'', $locationWithModules) . '\'';
 
+        $author = $this->option('author', '');
+        if ($author[0] === '=') {
+            $author = substr($author, 1);
+        }
+        $email = $this->option('email', '');
+        if ($email[0] === '=') {
+            $email = substr($email, 1);
+        }
+        $description = $this->option('description', '');
+        if ($description[0] === '=') {
+            $description = substr($description, 1);
+        }
         return [
             'LOCATION' => implode('/', $lowercases),
             'NAMESPACE' => config('moduler.namespace') . '\\' . implode('', $namespace),
@@ -261,9 +273,9 @@ class CreateCommand extends Command
             'FASCADE_ALIAS' => implode('', $namespace),
             'PROJECTNAME' => Str::ucfirst($split[count($split) - 1]),
             'PROJECTGROUP' => $name,
-            'AUTHOR' => $this->option('author', ''),
-            'EMAIL' => $this->option('email', ''),
-            'DESCRIPTION' => $this->option('description', '')
+            'AUTHOR' => $author,
+            'EMAIL' => $email,
+            'DESCRIPTION' => $description
         ];
     }
 
