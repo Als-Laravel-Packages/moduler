@@ -59,8 +59,8 @@ php artisan moduler:create my/fatastic -A="John Doe" -E="johndoe@example.com" -D
 
 **Version** | **Description**
 ------------|----------------
+1.2.0 | Laravel 10 support
 **1.1.2** | Fix issue on author having equal (=) sign [#5](https://github.com/Als-Laravel-Packages/moduler/issues/5)
 **1.1.0** | Can this use for Laravel 8 and up. Fixed issue regarding local adapter
 **1.0.0** | This supports laravel 7 and below only, this will cause FlySystem error on higher version
-
 
