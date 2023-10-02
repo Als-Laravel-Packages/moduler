@@ -1,10 +1,14 @@
 {
     "name": "aldev/moduler",
     "description": "Creating moduler, seems like DDD",
-    "keywords": ["example", "key", "words"],
+    "keywords": [
+        "example",
+        "key",
+        "words"
+    ],
     "license": "MIT",
     "homepage": "https://moduler.com",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "authors": [
         {
             "name": "Al Lestaire Acasio",
@@ -13,7 +17,6 @@
     ],
     "require": {
         "php": "^7.2.5|^8.0",
-        "illuminate/support": "^7.0|^8.0|^9.0",
         "league/flysystem": "^3.15"
     },
     "autoload": {
